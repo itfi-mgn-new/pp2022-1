@@ -2,6 +2,7 @@ package lesson6;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,6 +17,7 @@ public class MultiPoolTest {
 		final ExecutorService second = Executors.newFixedThreadPool(5);
 		final BlockingQueue<Future<Integer>> q = new ArrayBlockingQueue<>(1000);
 		final Semaphore	sema = new Semaphore(1);
+//		final CountDownLatch cdl = new CountDownLatch(100);
 		
 		int	count = 0;
 		
@@ -38,6 +40,7 @@ public class MultiPoolTest {
 								return 0;
 							} finally {
 								sema.release();
+//								cdl.countDown();
 							}
 						})
 					);
@@ -51,6 +54,7 @@ public class MultiPoolTest {
 
 		System.err.println("Start");
 		sema.acquire(100);
+//		cdl.await();
 		System.err.println("End");
 		
 //		while(count < 100) {
