@@ -1,7 +1,5 @@
 package lesson12;
 
-import sun.net.NetworkServer;
-
 public class Automat {
 	private static final int	TERM_DERNU = 0;
 	private static final int	TERM_OTPUSHU = 1;
